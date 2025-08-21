@@ -1,0 +1,25 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "this is my react learning ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhi96k/Namaste-React.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Abhishek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhi96k/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/Abhi96k/Namaste-React#readme",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
