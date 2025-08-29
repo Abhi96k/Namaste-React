@@ -14,7 +14,7 @@ const Body = () => {
     fetchData();
   }, []);
 
-  const handleTopRatedFilter =  (() => {
+  const handleTopRatedFilter = useCallback(() => {
     const filteredList = restaurants.filter((res) => res.info.avgRating > 4);
     setFilteredRestaurants(filteredList);
   }, [restaurants]);
@@ -32,7 +32,7 @@ const Body = () => {
       setError(null);
 
       const data = await fetch(SWIGGY_API_URL, {
-        headers: { 
+        headers: {
           "User-Agent": "Mozilla/5.0",
           Accept: "application/json",
         },
