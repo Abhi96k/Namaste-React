@@ -14,10 +14,17 @@ const Body = () => {
     fetchData();
   }, []);
 
-  const handleTopRatedFilter = useCallback(() => {
+  const handleTopRatedFilter =  (() => {
     const filteredList = restaurants.filter((res) => res.info.avgRating > 4);
     setFilteredRestaurants(filteredList);
   }, [restaurants]);
+
+  const handleSearch = () => {
+    const filteredList = restaurants.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredRestaurants(filteredList);
+  };
 
   const fetchData = async () => {
     try {
@@ -25,7 +32,7 @@ const Body = () => {
       setError(null);
 
       const data = await fetch(SWIGGY_API_URL, {
-        headers: {
+        headers: { 
           "User-Agent": "Mozilla/5.0",
           Accept: "application/json",
         },
@@ -77,6 +84,18 @@ const Body = () => {
     <div>
       <div className="body">
         <div className="filter">
+          <div>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search restaurants..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <button className="search-button" onClick={handleSearch}>
+              Search
+            </button>
+          </div>
           <button className="filter-button" onClick={handleTopRatedFilter}>
             Top Rated Restaurants
           </button>
