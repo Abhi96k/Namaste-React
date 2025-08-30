@@ -5,13 +5,13 @@ const Contact = () => {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -29,7 +29,7 @@ const Contact = () => {
         <p className="contact-intro">
           Have questions or feedback? We'd love to hear from you!
         </p>
-        
+
         <div className="contact-grid">
           <div className="contact-info">
             <h3>📞 Get in Touch</h3>
@@ -55,7 +55,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="contact-form">
             <h3>✍️ Send us a Message</h3>
             <form onSubmit={handleSubmit}>
