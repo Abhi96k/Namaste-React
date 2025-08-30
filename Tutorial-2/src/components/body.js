@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard.js";
 import { SkeletonContainer } from "./Skeleton.js";
 import { useState, useEffect, useCallback } from "react";
 import { SWIGGY_API_URL } from "../utils/contant.js";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -105,7 +106,12 @@ const Body = () => {
             <div className="no-results">No restaurants found</div>
           ) : (
             filteredRestaurants.map((restaurant) => (
-              <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+              <Link
+                to={`/restaurant/${restaurant.info.id}`}
+                key={restaurant.info.id}
+              >
+                <RestaurantCard resData={restaurant} />
+              </Link>
             ))
           )}
         </div>
