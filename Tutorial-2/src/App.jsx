@@ -5,6 +5,7 @@ import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import "../index.css";
+import RestaurantMenuPage from "./components/RestaurantMenuPage.js";
 
 const AppLayout = () => {
   return (
@@ -34,7 +35,11 @@ const App = () => {
           element: <Contact />,
         },
         {
-          path: "*", 
+          path: "restaurant/:resId",
+          element: <RestaurantMenuPage />,
+        },
+        {
+          path: "*",
           element: <Error />,
         },
       ],

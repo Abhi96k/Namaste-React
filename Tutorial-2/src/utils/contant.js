@@ -5,6 +5,6 @@ const LOGO_URL =
   "https://img.freepik.com/free-vector/ecofood-logo-template_1195-33.jpg";
 
 const SWIGGY_API_URL =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.296";
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export { CDN_URL, LOGO_URL, SWIGGY_API_URL };
