@@ -60,11 +60,8 @@ export default UserClass;
 // 3. Unmounting
 //    - componentWillUnmount()
 
-
 // 4. Error Handling
 //    - componentDidCatch()
-
-
 
 // suppose we call children components
 // <UserProfile name="John Doe" email="john@example.com" />
@@ -72,14 +69,13 @@ export default UserClass;
 
 //parent Constructor called
 //parent render called
-     //  --child1 Constructor called
-    //  --child1 render called
-    //  --child2 Constructor called
-    //  --child2 render called
-  //child1 componentDidMount called
-  //child2 componentDidMount called
+//  --child1 Constructor called
+//  --child1 render called
+//  --child2 Constructor called
+//  --child2 render called
+//child1 componentDidMount called
+//child2 componentDidMount called
 //parent componentDidMount called
-
 
 // //mounting
 //   |-parent Constructor called
@@ -91,3 +87,5 @@ export default UserClass;
 //   |--child1 componentDidMount called
 //   |--child2 componentDidMount called
 //   |--parent componentDidMount called
+
+//https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
