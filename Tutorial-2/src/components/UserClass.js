@@ -11,6 +11,10 @@ class UserClass extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log("Component Did Mount - UserClass");
+  }
+
   render() {
     const { count } = this.state;
     return (
@@ -38,3 +42,21 @@ export default UserClass;
 //UserClass:-
 
 // Never Updated State Directly like:- this.state.count++
+
+// First Constructor is called
+// Then render method is called
+// After that componentDidMount is called
+
+//Life Cycle of class Component:-
+// 1. Mounting
+//    - constructor()
+//    - render()
+//    - componentDidMount()
+
+// 2. Updating
+//    - render()
+//    - componentDidUpdate()
+
+// 3. Unmounting
+//    - componentWillUnmount()
+
