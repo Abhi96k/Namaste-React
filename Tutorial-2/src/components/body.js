@@ -16,7 +16,9 @@ const Body = () => {
   }, []);
 
   const handleTopRatedFilter = useCallback(() => {
-    const filteredList = restaurants.filter((res) => res.info.avgRating > 4);
+    const filteredList = restaurants.filter(
+      (res) => res.info.avgRating > 4
+    );
     setFilteredRestaurants(filteredList);
   }, [restaurants]);
 
