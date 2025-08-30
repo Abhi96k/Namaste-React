@@ -1,17 +1,36 @@
+import { Link, useLocation } from "react-router-dom";
 import { LOGO_URL } from "../utils/contant";
+
 const Header = () => {
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path ? "active" : "";
+  };
+
   return (
     <div className="header">
       <div className="logo">
-        <img src={LOGO_URL} alt="Header Image" />
+        <Link to="/">
+          <img src={LOGO_URL} alt="Header Image" />
+        </Link>
       </div>
 
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact</li>
-          <li>Cart</li>
+          <li className={isActive("/")}>
+            <Link to="/">Home</Link>
+          </li>
+          <li className={isActive("/about")}>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li className={isActive("/contact")}>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <span className="cart-icon">🛒</span>
+            Cart
+          </li>
         </ul>
       </div>
     </div>
