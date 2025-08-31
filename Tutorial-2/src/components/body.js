@@ -12,6 +12,8 @@ const Body = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const onlineStatus = UseOnlineStatus();
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -61,6 +63,16 @@ const Body = () => {
     }
   };
 
+  if (onlineStatus === false) {
+    return (
+      <div className="body">
+        <div className="loading">
+          You are offline. Please check your internet connection.
+        </div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="body">
@@ -82,19 +94,7 @@ const Body = () => {
     );
   }
 
-  const onlineStatus = UseOnlineStatus();
-
-  if (onlineStatus === false) {
-    return (
-      <div className="body">
-        <div className="loading">
-          You are offline. Please check your internet connection.
-        </div>
-      </div>
-    );
-  }
-
-  return (  
+  return (
     <div>
       <div className="body">
         <div className="filter">
