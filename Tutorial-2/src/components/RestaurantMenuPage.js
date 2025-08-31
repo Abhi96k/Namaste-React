@@ -1,50 +1,16 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useRestaurantMenuPage from "../utils/useRestaurantMenuPage";
 import "./RestaurantMenuPage.css";
 
 const RestaurantMenuPage = () => {
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
-  const [menuItems, setMenuItems] = useState([]);
   const { resId } = useParams();
+  const { restaurantInfo, menuItems, loading } = useRestaurantMenuPage(resId);
 
-  useEffect(() => {
-    fetchMenuData();
-  }, []);
-
-  const fetchMenuData = async () => {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.99740&lng=79.00110&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`
-    );
-    const json = await data.json();
-    console.log(json);
-
-    const restaurantData = json?.data?.cards?.find(
-      (card) =>
-        card?.card?.card?.["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
-    )?.card?.card?.info;
-
-    setRestaurantInfo(restaurantData);
-
-    const menuData = json?.data?.cards?.find((card) => card?.groupedCard)
-      ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
-    const categories = menuData?.filter(
-      (card) =>
-        card?.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
-        card?.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
-    );
-
-    setMenuItems(categories || []);
-  };
-
-  if (!restaurantInfo) {
+  if (loading || !restaurantInfo) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <div className="restaurant-menu">
       {/* Restaurant Info */}

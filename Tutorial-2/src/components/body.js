@@ -3,6 +3,7 @@ import { SkeletonContainer } from "./Skeleton.js";
 import { useState, useEffect, useCallback } from "react";
 import { SWIGGY_API_URL } from "../utils/contant.js";
 import { Link } from "react-router-dom";
+import UseOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -16,9 +17,7 @@ const Body = () => {
   }, []);
 
   const handleTopRatedFilter = useCallback(() => {
-    const filteredList = restaurants.filter(
-      (res) => res.info.avgRating > 4
-    );
+    const filteredList = restaurants.filter((res) => res.info.avgRating > 4);
     setFilteredRestaurants(filteredList);
   }, [restaurants]);
 
@@ -83,7 +82,19 @@ const Body = () => {
     );
   }
 
-  return (
+  const onlineStatus = UseOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <div className="body">
+        <div className="loading">
+          You are offline. Please check your internet connection.
+        </div>
+      </div>
+    );
+  }
+
+  return (  
     <div>
       <div className="body">
         <div className="filter">

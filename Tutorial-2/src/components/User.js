@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const User = () => {
-  const [githubdata, setGithubData] = useState(null);
+  const [githubdata, setGithubData] = useState(null);  
 
   useEffect(() => {
     fetchData();
