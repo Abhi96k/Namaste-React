@@ -27,6 +27,9 @@ const Header = () => {
           <li className={isActive("/contact")}>
             <Link to="/contact">Contact</Link>
           </li>
+          <li className={isActive("/grocery")}>
+            <Link to="/grocery">Grocery</Link>
+          </li>
           <li>
             <span className="cart-icon">🛒</span>
             Cart

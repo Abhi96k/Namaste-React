@@ -6,6 +6,12 @@ import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import "../index.css";
 import RestaurantMenuPage from "./components/RestaurantMenuPage.js";
+// import Grocery from "./components/Grocery.js";
+import { lazy , Suspense } from "react";
+
+
+//lazy Loading
+const Grocery = lazy(() => import("./components/Grocery.js"));
 
 const AppLayout = () => {
   return (
@@ -39,6 +45,14 @@ const App = () => {
           element: <RestaurantMenuPage />,
         },
         {
+          path: "grocery",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <Grocery />
+            </Suspense>
+          ),
+        },
+        {  
           path: "*",
           element: <Error />,
         },
