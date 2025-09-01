@@ -125,7 +125,7 @@ export const skeletonStyles = {
   skeletonSubtitle: "w-3/4",
   skeletonRating: "w-1/2",
   skeletonPrice: "w-2/3",
-  skeletonTime: "w-1/3 mb-6",
+  skeletonTime: "w-1/2 mb-6",
 };
 
 export const aboutStyles = {

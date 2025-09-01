@@ -20,15 +20,37 @@ const Body = () => {
   }, []);
 
   const handleTopRatedFilter = useCallback(() => {
-    const filteredList = restaurants.filter((res) => res.info.avgRating > 4);
+    if (restaurants.length === 0) {
+      console.log("No restaurants available to filter");
+      return;
+    }
+
+    const filteredList = restaurants.filter((res) => {
+      const rating = res?.info?.avgRating;
+      return rating && rating >= 4.0;
+    });
+
+    console.log(
+      `Filtered ${filteredList.length} restaurants with rating >= 4.0`
+    );
     setFilteredRestaurants(filteredList);
   }, [restaurants]);
 
   const handleSearch = () => {
+    if (!searchText.trim()) {
+      setFilteredRestaurants(restaurants);
+      return;
+    }
+
     const filteredList = restaurants.filter((res) =>
-      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+      res?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredRestaurants(filteredList);
+  };
+
+  const handleClearFilters = () => {
+    setFilteredRestaurants(restaurants);
+    setSearchText("");
   };
 
   const fetchData = async () => {
@@ -109,26 +131,58 @@ const Body = () => {
               placeholder="Search restaurants..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
             />
             <button className={bodyStyles.searchButton} onClick={handleSearch}>
               Search
             </button>
           </div>
-          <button
-            className={bodyStyles.filterButton}
-            onClick={handleTopRatedFilter}
-          >
-            Top Rated Restaurants
-          </button>
+          <div className="flex gap-3">
+            <button
+              className={bodyStyles.filterButton}
+              onClick={handleTopRatedFilter}
+              disabled={restaurants.length === 0}
+            >
+              Top Rated (4+⭐)
+            </button>
+            <button
+              className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition duration-200 text-lg"
+              onClick={handleClearFilters}
+              disabled={restaurants.length === 0}
+            >
+              Clear Filters
+            </button>
+          </div>
         </div>
+
+        {/* Show filter info */}
+        {filteredRestaurants.length !== restaurants.length &&
+          restaurants.length > 0 && (
+            <div className="w-full max-w-7xl mx-auto px-4 mb-4">
+              <p className="text-gray-600 text-lg">
+                Showing {filteredRestaurants.length} of {restaurants.length}{" "}
+                restaurants
+              </p>
+            </div>
+          )}
+
         <div className={bodyStyles.resContainer}>
           {filteredRestaurants.length === 0 ? (
-            <div className={bodyStyles.noResults}>No restaurants found</div>
+            <div className={bodyStyles.noResults}>
+              {restaurants.length === 0
+                ? "Loading restaurants..."
+                : "No restaurants found matching your criteria"}
+            </div>
           ) : (
             filteredRestaurants.map((restaurant) => (
               <Link
                 to={`/restaurant/${restaurant.info.id}`}
                 key={restaurant.info.id}
+                className="block h-full"
               >
                 <RestaurantCard resData={restaurant} />
               </Link>
