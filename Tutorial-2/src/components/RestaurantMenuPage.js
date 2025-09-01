@@ -1,52 +1,74 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenuPage from "../utils/useRestaurantMenuPage";
-import "./RestaurantMenuPage.css";
+import { restaurantMenuStyles } from "../CustomStyle/CustomStyle";
 
 const RestaurantMenuPage = () => {
   const { resId } = useParams();
   const { restaurantInfo, menuItems, loading } = useRestaurantMenuPage(resId);
 
   if (loading || !restaurantInfo) {
-    return <div>Loading...</div>;
+    return <div className={restaurantMenuStyles.loading}>Loading...</div>;
   }
- 
+
   return (
-    <div className="restaurant-menu">
+    <div className={restaurantMenuStyles.restaurantMenu}>
       {/* Restaurant Info */}
-      <div className="restaurant-header">
-        <h1>{restaurantInfo.name}</h1>
-        <p>{restaurantInfo.cuisines?.join(", ")}</p>
-        <p>
+      <div className={restaurantMenuStyles.restaurantHeader}>
+        <h1 className={restaurantMenuStyles.restaurantTitle}>
+          {restaurantInfo.name}
+        </h1>
+        <p className={restaurantMenuStyles.restaurantInfo}>
+          {restaurantInfo.cuisines?.join(", ")}
+        </p>
+        <p className={restaurantMenuStyles.restaurantInfo}>
           {restaurantInfo.areaName}, {restaurantInfo.city}
         </p>
-        <p>
+        <p className={restaurantMenuStyles.restaurantInfo}>
           Rating: {restaurantInfo.avgRating} ⭐ (
           {restaurantInfo.totalRatingsString})
         </p>
-        <p>{restaurantInfo.costForTwoMessage}</p>
+        <p className={restaurantMenuStyles.restaurantInfo}>
+          {restaurantInfo.costForTwoMessage}
+        </p>
       </div>
 
       {/* Menu Items */}
-      <div className="menu-categories">
+      <div className={restaurantMenuStyles.menuCategories}>
         {menuItems.map((category, index) => (
-          <div key={index} className="category">
-            <h2>{category?.card?.card?.title}</h2>
+          <div key={index} className={restaurantMenuStyles.category}>
+            <h2 className={restaurantMenuStyles.categoryTitle}>
+              {category?.card?.card?.title}
+            </h2>
 
             {/* Handle NestedItemCategory */}
             {category?.card?.card?.categories ? (
               category.card.card.categories.map((subCategory, subIndex) => (
-                <div key={subIndex} className="sub-category">
-                  <h3>{subCategory.title}</h3>
-                  <div className="menu-items">
+                <div
+                  key={subIndex}
+                  className={restaurantMenuStyles.subCategory}
+                >
+                  <h3 className={restaurantMenuStyles.subCategoryTitle}>
+                    {subCategory.title}
+                  </h3>
+                  <div className={restaurantMenuStyles.menuItems}>
                     {subCategory.itemCards?.map((item, itemIndex) => (
-                      <div key={itemIndex} className="menu-item">
-                        <div className="item-info">
-                          <h4>{item.card.info.name}</h4>
-                          <p>₹{item.card.info.price / 100}</p>
-                          <p>{item.card.info.description}</p>
+                      <div
+                        key={itemIndex}
+                        className={restaurantMenuStyles.menuItem}
+                      >
+                        <div className={restaurantMenuStyles.itemInfo}>
+                          <h4 className={restaurantMenuStyles.itemTitle}>
+                            {item.card.info.name}
+                          </h4>
+                          <p className={restaurantMenuStyles.itemPrice}>
+                            ₹{item.card.info.price / 100}
+                          </p>
+                          <p className={restaurantMenuStyles.itemDescription}>
+                            {item.card.info.description}
+                          </p>
                           {item.card.info.ratings?.aggregatedRating?.rating && (
-                            <span>
+                            <span className={restaurantMenuStyles.itemRating}>
                               ⭐{" "}
                               {item.card.info.ratings.aggregatedRating.rating}
                             </span>
@@ -56,7 +78,7 @@ const RestaurantMenuPage = () => {
                           <img
                             src={`https://media-assets.swiggy.com/swiggy/image/upload/w_208,h_208,c_fit/${item.card.info.imageId}`}
                             alt={item.card.info.name}
-                            className="item-image"
+                            className={restaurantMenuStyles.itemImage}
                           />
                         )}
                       </div>
@@ -66,15 +88,24 @@ const RestaurantMenuPage = () => {
               ))
             ) : (
               /* Handle ItemCategory */
-              <div className="menu-items">
+              <div className={restaurantMenuStyles.menuItems}>
                 {category?.card?.card?.itemCards?.map((item, itemIndex) => (
-                  <div key={itemIndex} className="menu-item">
-                    <div className="item-info">
-                      <h4>{item.card.info.name}</h4>
-                      <p>₹{item.card.info.price / 100}</p>
-                      <p>{item.card.info.description}</p>
+                  <div
+                    key={itemIndex}
+                    className={restaurantMenuStyles.menuItem}
+                  >
+                    <div className={restaurantMenuStyles.itemInfo}>
+                      <h4 className={restaurantMenuStyles.itemTitle}>
+                        {item.card.info.name}
+                      </h4>
+                      <p className={restaurantMenuStyles.itemPrice}>
+                        ₹{item.card.info.price / 100}
+                      </p>
+                      <p className={restaurantMenuStyles.itemDescription}>
+                        {item.card.info.description}
+                      </p>
                       {item.card.info.ratings?.aggregatedRating?.rating && (
-                        <span>
+                        <span className={restaurantMenuStyles.itemRating}>
                           ⭐ {item.card.info.ratings.aggregatedRating.rating}
                         </span>
                       )}
@@ -83,7 +114,7 @@ const RestaurantMenuPage = () => {
                       <img
                         src={`https://media-assets.swiggy.com/swiggy/image/upload/w_208,h_208,c_fit/${item.card.info.imageId}`}
                         alt={item.card.info.name}
-                        className="item-image"
+                        className={restaurantMenuStyles.itemImage}
                       />
                     )}
                   </div>

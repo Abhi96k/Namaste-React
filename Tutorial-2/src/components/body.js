@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { SWIGGY_API_URL } from "../utils/contant.js";
 import { Link } from "react-router-dom";
 import UseOnlineStatus from "../utils/useOnlineStatus.js";
+import { bodyStyles, skeletonStyles } from "../CustomStyle/CustomStyle.js";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -65,8 +66,8 @@ const Body = () => {
 
   if (onlineStatus === false) {
     return (
-      <div className="body">
-        <div className="loading">
+      <div className={bodyStyles.body}>
+        <div className={bodyStyles.loading}>
           You are offline. Please check your internet connection.
         </div>
       </div>
@@ -75,9 +76,12 @@ const Body = () => {
 
   if (isLoading) {
     return (
-      <div className="body">
-        <div className="filter">
-          <button className="filter-button" disabled>
+      <div className={bodyStyles.body}>
+        <div className={bodyStyles.filter}>
+          <button
+            className={`${bodyStyles.filterButton} opacity-50 cursor-not-allowed`}
+            disabled
+          >
             Top Rated Restaurants
           </button>
         </div>
@@ -88,35 +92,38 @@ const Body = () => {
 
   if (error) {
     return (
-      <div className="body">
-        <div className="loading">{error}</div>
+      <div className={bodyStyles.body}>
+        <div className={bodyStyles.loading}>{error}</div>
       </div>
     );
   }
 
   return (
     <div>
-      <div className="body">
-        <div className="filter">
-          <div>
+      <div className={bodyStyles.body}>
+        <div className={bodyStyles.filter}>
+          <div className={bodyStyles.searchContainer}>
             <input
               type="text"
-              className="search-input"
+              className={bodyStyles.searchInput}
               placeholder="Search restaurants..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <button className="search-button" onClick={handleSearch}>
+            <button className={bodyStyles.searchButton} onClick={handleSearch}>
               Search
             </button>
           </div>
-          <button className="filter-button" onClick={handleTopRatedFilter}>
+          <button
+            className={bodyStyles.filterButton}
+            onClick={handleTopRatedFilter}
+          >
             Top Rated Restaurants
           </button>
         </div>
-        <div className="res-container">
+        <div className={bodyStyles.resContainer}>
           {filteredRestaurants.length === 0 ? (
-            <div className="no-results">No restaurants found</div>
+            <div className={bodyStyles.noResults}>No restaurants found</div>
           ) : (
             filteredRestaurants.map((restaurant) => (
               <Link

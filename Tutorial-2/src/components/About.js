@@ -1,8 +1,10 @@
 import User from "./User.js";
+import { aboutStyles } from "../CustomStyle/CustomStyle.js";
+
 const About = () => {
   return (
-    <div className="about-container">
-      <div className="about-content">
+    <div className={aboutStyles.aboutContainer}>
+      <div className={aboutStyles.aboutContent}>
         <User />
       </div>
     </div>

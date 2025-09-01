@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/contant";
+import { restaurantCardStyles } from "../CustomStyle/CustomStyle";
 
 const RestaurantCard = ({ resData }) => {
   // Defensive destructuring with better fallbacks
@@ -27,20 +28,28 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="res-card">
+    <div className={restaurantCardStyles.resCard}>
       <img
-        className="res-logo"
+        className={restaurantCardStyles.resLogo}
         src={`${CDN_URL}${cloudinaryImageId}`}
         alt={name}
         onError={(e) => {
           e.target.src = "https://via.placeholder.com/300x200?text=No+Image";
         }}
       />
-      <h3>{name}</h3>
-      <h4>{formatCuisines(cuisines)}</h4>
-      <h4>{formatRating(avgRating)}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{formatDeliveryTime(sla)}</h4>
+      <div className={restaurantCardStyles.cardContent}>
+        <h3 className={restaurantCardStyles.cardTitle}>{name}</h3>
+        <h4 className={restaurantCardStyles.cardCuisines}>
+          {formatCuisines(cuisines)}
+        </h4>
+        <h4 className={restaurantCardStyles.cardRating}>
+          {formatRating(avgRating)}
+        </h4>
+        <h4 className={restaurantCardStyles.cardCost}>{costForTwo}</h4>
+        <h4 className={restaurantCardStyles.cardTime}>
+          {formatDeliveryTime(sla)}
+        </h4>
+      </div>
     </div>
   );
 };

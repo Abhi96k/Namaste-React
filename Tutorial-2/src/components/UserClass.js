@@ -1,3 +1,6 @@
+import React from "react";
+import { userClassStyles } from "../CustomStyle/CustomStyle";
+
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
@@ -18,19 +21,28 @@ class UserClass extends React.Component {
   render() {
     const { count } = this.state;
     return (
-      <div>
-        <h1>User Profile</h1>
-        <div>Name: {this.state.name}</div>
-        <div>Email: {this.state.email}</div>
+      <div className={userClassStyles.userClassContainer}>
+        <div className={userClassStyles.userClassCard}>
+          <h1 className={userClassStyles.userClassTitle}>User Profile</h1>
+          <div className={userClassStyles.userClassInfo}>
+            <div className={userClassStyles.userClassField}>
+              Name: {this.state.name}
+            </div>
+            <div className={userClassStyles.userClassField}>
+              Email: {this.state.email}
+            </div>
+          </div>
 
-        <div>Count: {count}</div>
-        <button
-          onClick={() => {
-            this.setState({ count: count + 1 });
-          }}
-        >
-          Increment Count
-        </button>
+          <div className={userClassStyles.userClassCount}>Count: {count}</div>
+          <button
+            className={userClassStyles.incrementBtn}
+            onClick={() => {
+              this.setState({ count: count + 1 });
+            }}
+          >
+            Increment Count
+          </button>
+        </div>
       </div>
     );
   }
@@ -91,4 +103,3 @@ export default UserClass;
 //https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 //https://api.github.com/users/Abhi96k
-

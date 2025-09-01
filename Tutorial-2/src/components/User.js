@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { userProfileStyles } from "../CustomStyle/CustomStyle";
 
 const User = () => {
-  const [githubdata, setGithubData] = useState(null);  
+  const [githubdata, setGithubData] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -14,64 +15,73 @@ const User = () => {
   };
 
   return (
-    <div className="user-profile">
+    <div className={userProfileStyles.userProfile}>
       {githubdata && (
-        <div className="profile-card">
-          <div className="profile-header">
+        <div className={userProfileStyles.profileCard}>
+          <div className={userProfileStyles.profileHeader}>
             <img
               src={githubdata.avatar_url}
               alt={githubdata.name}
-              className="avatar"
+              className={userProfileStyles.avatar}
             />
-            <div className="profile-info">
-              <h1 className="name">{githubdata.name}</h1>
-              <p className="username">@{githubdata.login}</p>
-              <p className="bio">{githubdata.bio}</p>
+            <div className={userProfileStyles.profileInfo}>
+              <h1 className={userProfileStyles.profileName}>
+                {githubdata.name}
+              </h1>
+              <p className={userProfileStyles.username}>@{githubdata.login}</p>
+              <p className={userProfileStyles.bio}>{githubdata.bio}</p>
             </div>
           </div>
 
-          <div className="profile-details">
-            <div className="detail-item">
-              <span className="icon">📍</span>
+          <div className={userProfileStyles.profileDetails}>
+            <div className={userProfileStyles.detailItem}>
+              <span className={userProfileStyles.infoIcon}>📍</span>
               <span>{githubdata.location}</span>
             </div>
-            <div className="detail-item">
-              <span className="icon">🏢</span>
+            <div className={userProfileStyles.detailItem}>
+              <span className={userProfileStyles.infoIcon}>🏢</span>
               <span>{githubdata.company}</span>
             </div>
-            <div className="detail-item">
-              <span className="icon">🔗</span>
+            <div className={userProfileStyles.detailItem}>
+              <span className={userProfileStyles.infoIcon}>🔗</span>
               <a
                 href={githubdata.blog}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 transition duration-200"
               >
                 LinkedIn Profile
               </a>
             </div>
           </div>
 
-          <div className="stats">
-            <div className="stat">
-              <span className="stat-number">{githubdata.public_repos}</span>
-              <span className="stat-label">Repositories</span>
+          <div className={userProfileStyles.stats}>
+            <div className={userProfileStyles.stat}>
+              <span className={userProfileStyles.statNumber}>
+                {githubdata.public_repos}
+              </span>
+              <span className={userProfileStyles.statLabel}>Repositories</span>
             </div>
-            <div className="stat">
-              <span className="stat-number">{githubdata.followers}</span>
-              <span className="stat-label">Followers</span>
+            <div className={userProfileStyles.stat}>
+              <span className={userProfileStyles.statNumber}>
+                {githubdata.followers}
+              </span>
+              <span className={userProfileStyles.statLabel}>Followers</span>
             </div>
-            <div className="stat">
-              <span className="stat-number">{githubdata.following}</span>
-              <span className="stat-label">Following</span>
+            <div className={userProfileStyles.stat}>
+              <span className={userProfileStyles.statNumber}>
+                {githubdata.following}
+              </span>
+              <span className={userProfileStyles.statLabel}>Following</span>
             </div>
           </div>
 
-          <div className="profile-actions">
+          <div className={userProfileStyles.profileActions}>
             <a
               href={githubdata.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="github-btn"
+              className={userProfileStyles.githubBtn}
             >
               View GitHub Profile
             </a>
