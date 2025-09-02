@@ -11,12 +11,12 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-white shadow-md border-b">
+    <div className="bg-white shadow-lg border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <Link to="/">
-              <img className="h-8 w-auto" src={LOGO_URL} alt="Header Image" />
+              <img className="h-12 w-auto" src={LOGO_URL} alt="Header Image" />
             </Link>
           </div>
 

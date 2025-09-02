@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard.js";
+import RestaurantCard, { withPromoteLabel } from "./RestaurantCard.js";
 import { SkeletonContainer } from "./Skeleton.js";
 import { useState, useEffect, useCallback } from "react";
 import { SWIGGY_API_URL } from "../utils/contant.js";
@@ -12,6 +12,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const RestaurantCardWithPromoteLabel = withPromoteLabel(RestaurantCard);
 
   const onlineStatus = UseOnlineStatus();
 
@@ -184,7 +186,11 @@ const Body = () => {
                 key={restaurant.info.id}
                 className="block h-full"
               >
-                <RestaurantCard resData={restaurant} />
+                {restaurant.info.promoted ? (
+                  <RestaurantCardWithPromoteLabel resData={restaurant} />
+                ) : (
+                  <RestaurantCard resData={restaurant} />
+                )}
               </Link>
             ))
           )}
