@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { userProfileStyles } from "../CustomStyle/CustomStyle";
+import { userProfileStyles } from "../CustomStyle/CustomStyle.js";
 
 const User = () => {
   const [githubdata, setGithubData] = useState(null);

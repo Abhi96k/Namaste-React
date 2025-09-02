@@ -1,4 +1,4 @@
-import { skeletonStyles } from "../CustomStyle/CustomStyle";
+import { skeletonStyles } from "../CustomStyle/CustomStyle.js";
 
 const SkeletonCard = () => {
   return (

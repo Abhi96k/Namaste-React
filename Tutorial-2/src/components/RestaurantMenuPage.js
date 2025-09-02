@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenuPage from "../utils/useRestaurantMenuPage";
-import { restaurantMenuStyles } from "../CustomStyle/CustomStyle";
+import { restaurantMenuStyles } from "../CustomStyle/CustomStyle.js";
 
 const RestaurantMenuPage = () => {
   const { resId } = useParams();

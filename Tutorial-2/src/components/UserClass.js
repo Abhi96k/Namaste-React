@@ -1,5 +1,5 @@
 import React from "react";
-import { userClassStyles } from "../CustomStyle/CustomStyle";
+import { userClassStyles } from "../CustomStyle/CustomStyle.js";
 
 class UserClass extends React.Component {
   constructor(props) {

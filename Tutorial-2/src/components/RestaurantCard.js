@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/contant";
-import { restaurantCardStyles } from "../CustomStyle/CustomStyle";
+import { restaurantCardStyles } from "../CustomStyle/CustomStyle.js";
 
 const RestaurantCard = ({ resData }) => {
   // Defensive destructuring with better fallbacks
