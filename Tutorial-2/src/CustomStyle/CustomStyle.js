@@ -42,11 +42,14 @@ export const restaurantMenuStyles = {
   restaurantTitle: "text-5xl mb-4 font-bold",
   restaurantInfo: "my-3 text-xl opacity-90",
   menuCategories: "w-full max-w-7xl mx-auto flex flex-col gap-8",
-  category: "w-full bg-white rounded-xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
+  category:
+    "w-full bg-white rounded-xl p-8 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
   categoryTitle:
-    "text-gray-700 text-4xl mb-6 pb-4 border-b-4 border-blue-500 font-semibold",
-  categoryHeader: "flex justify-between items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200",
-  categoryToggle: "text-2xl text-gray-500 transition-transform duration-200 hover:text-gray-700",
+    "text-gray-700 text-xl mb-6 pb-4 border-b-4 border-blue-500 font-semibold",
+  categoryHeader:
+    "flex justify-between items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200",
+  categoryToggle:
+    "text-2xl text-gray-500 transition-transform duration-200 hover:text-gray-700",
   subCategory: "mb-8",
   subCategoryTitle: "text-gray-600 text-3xl mb-6 font-medium",
   menuItems:
@@ -60,7 +63,8 @@ export const restaurantMenuStyles = {
   itemDescription: "text-gray-600 text-base leading-relaxed mb-4 flex-grow",
   itemRating:
     "bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium self-start mt-auto",
-  itemRibbon: "bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium",
+  itemRibbon:
+    "bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium",
   itemVegIcon: "absolute top-2 left-2 text-2xl",
   loading: "w-full text-center text-2xl text-gray-600 py-16",
   emptyState: "text-center text-gray-500 py-8",
