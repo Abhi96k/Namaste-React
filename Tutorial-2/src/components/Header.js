@@ -3,12 +3,24 @@ import { LOGO_URL } from "../utils/contant";
 
 import UserContext from "../Context/UserContext.js";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
+//selector subscribe to the store and select the required slice of state
+// whenever the selected slice of state changes the component will re-render
+// if we don't use selector the component will not re-render when the state changes
+// selector is a function that takes the entire store state and returns the required slice of state
 const Header = () => {
   const location = useLocation();
   const { loggedInUser } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
 
   console.log(loggedInUser);
+
+  // Calculate total items in cart (sum of quantities)
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const isActive = (path) => {
     return location.pathname === path
@@ -67,10 +79,15 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                <Link
+                  to="/cart"
+                  className={`flex items-center space-x-1 transition-colors duration-200 ${isActive(
+                    "/cart"
+                  )}`}
+                >
                   <span className="text-xl">🛒</span>
-                  <span>Cart</span>
-                </button>
+                  <span>Cart {totalItems > 0 && `(${totalItems})`}</span>
+                </Link>
               </li>
             </ul>
           </nav>

@@ -4,23 +4,28 @@ import Body from "./components/body.js";
 import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
+import Cart from "./components/Cart.js";
 import "../index.css";
 import RestaurantMenuPage from "./components/RestaurantMenuPage.js";
 // import Grocery from "./components/Grocery.js";
 import { lazy, Suspense } from "react";
 import UserContext from "./Context/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/store/appStore.js";
 
 //lazy Loading
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
 const AppLayout = () => {
   return (
-    <UserContext.Provider value={{ loggedInUser: "John Doe" }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: "John Doe" }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -41,6 +46,10 @@ const App = () => {
         {
           path: "contact",
           element: <Contact />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
         },
         {
           path: "restaurant/:resId",
