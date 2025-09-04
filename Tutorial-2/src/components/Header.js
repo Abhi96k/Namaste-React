@@ -1,8 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { LOGO_URL } from "../utils/contant";
 
+import UserContext from "../Context/UserContext.js";
+import { useContext } from "react";
+
 const Header = () => {
   const location = useLocation();
+  const { loggedInUser } = useContext(UserContext);
+
+  console.log(loggedInUser);
 
   const isActive = (path) => {
     return location.pathname === path

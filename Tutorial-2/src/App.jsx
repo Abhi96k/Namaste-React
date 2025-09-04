@@ -7,18 +7,20 @@ import Error from "./components/Error.js";
 import "../index.css";
 import RestaurantMenuPage from "./components/RestaurantMenuPage.js";
 // import Grocery from "./components/Grocery.js";
-import { lazy , Suspense } from "react";
-
+import { lazy, Suspense } from "react";
+import UserContext from "./Context/UserContext.js";
 
 //lazy Loading
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: "John Doe" }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -52,7 +54,7 @@ const App = () => {
             </Suspense>
           ),
         },
-        {  
+        {
           path: "*",
           element: <Error />,
         },

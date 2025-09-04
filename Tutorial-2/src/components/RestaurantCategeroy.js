@@ -34,3 +34,4 @@ const RestaurantCategory = ({ category, showIndex, setShowIndex, index }) => {
 };
 
 export default RestaurantCategory;
+ 
