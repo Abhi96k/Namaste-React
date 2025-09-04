@@ -21,3 +21,11 @@
 4. Provide the store to the app using Provider from react-redux in index.js
 5. Use useSelector to read the state from the store
 6. Use useDispatch to dispatch actions to the store
+
+
+-install redux devtools extension in browser
+-build the store
+-connect the store with react app
+-create a slice
+-dispatch the action
+-read from the store using useSelector
