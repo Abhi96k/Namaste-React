@@ -21,6 +21,10 @@ const Cart = () => {
     );
   };
 
+  const clearCart = () => {
+    dispatch({ type: "cart/clearCart" });
+  };
+
   if (cartItems.length === 0) {
     return (
       <div className="max-w-4xl mx-auto p-6">
@@ -38,6 +42,13 @@ const Cart = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Shopping Cart</h2>
+
+      <button
+        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+        onClick={clearCart}
+      >
+        Clear Cart
+      </button>
 
       <div className="space-y-4">
         {cartItems.map((item) => (
