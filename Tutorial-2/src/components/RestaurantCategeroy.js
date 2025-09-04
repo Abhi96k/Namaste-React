@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import ItemList from "./ItemsList.js";
 import { restaurantMenuStyles } from "../CustomStyle/CustomStyle.js";
 
-const RestaurantCategory = ({ category }) => {
-  const [showItems, setShowItems] = useState(false);
+const RestaurantCategory = ({ category, showIndex, setShowIndex, index }) => {
+  const isExpanded = showIndex === index;
 
   const toggleItems = () => {
-    setShowItems((prev) => !prev);
+    setShowIndex(isExpanded ? -1 : index);
   };
 
   return (
@@ -20,11 +20,11 @@ const RestaurantCategory = ({ category }) => {
           {category?.card?.card?.itemCards?.length || 0})
         </h6>
         <span className={restaurantMenuStyles.categoryToggle}>
-          {showItems ? "▼" : "▶"}
+          {isExpanded ? "▼" : "▶"}
         </span>
       </div>
 
-      {showItems && (
+      {isExpanded && (
         <div className="mt-6">
           <ItemList items={category?.card?.card?.itemCards} />
         </div>

@@ -6,7 +6,9 @@ const ItemList = ({ items }) => {
   if (!items || items.length === 0) {
     return (
       <div className={restaurantMenuStyles.emptyState}>
-        <p className={restaurantMenuStyles.emptyStateText}>No items available in this category</p>
+        <p className={restaurantMenuStyles.emptyStateText}>
+          No items available in this category
+        </p>
       </div>
     );
   }

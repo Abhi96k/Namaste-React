@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenuPage from "../utils/useRestaurantMenuPage";
 import RestaurantCategory from "./RestaurantCategeroy.js";
 import { restaurantMenuStyles } from "../CustomStyle/CustomStyle.js";
+import { useState } from "react";
 
 const RestaurantMenuPage = () => {
   const { resId } = useParams();
   const { restaurantInfo, menuItems, loading } = useRestaurantMenuPage(resId);
+
+  const [showIndex, setShowIndex] = useState(0);
 
   if (loading || !restaurantInfo) {
     return <div className={restaurantMenuStyles.loading}>Loading...</div>;
@@ -37,7 +40,13 @@ const RestaurantMenuPage = () => {
       {/* Menu Categories */}
       <div className={restaurantMenuStyles.menuCategories}>
         {menuItems.map((category, index) => (
-          <RestaurantCategory key={index} category={category} />
+          <RestaurantCategory
+            key={index}
+            category={category}
+            index={index}
+            showIndex={showIndex}
+            setShowIndex={setShowIndex}
+          />
         ))}
       </div>
     </div>
